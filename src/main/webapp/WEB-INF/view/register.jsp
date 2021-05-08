@@ -4,33 +4,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WebChat | 登陆</title>
-    <link href="<%=path%>/static/source/css/login.css" rel='stylesheet' type='text/css'/>
-    <script src="<%=path%>/static/plugins/jquery/jquery-2.1.4.min.js"></script>
-    <script src="<%=path%>/static/plugins/layer/layer.js"></script>
+  <title>WebChat | 注册</title>
+  <link href="<%=path%>/static/source/css/login.css" rel='stylesheet' type='text/css'/>
+  <script src="<%=path%>/static/plugins/jquery/jquery-2.1.4.min.js"></script>
+  <script src="<%=path%>/static/plugins/layer/layer.js"></script>
 </head>
 <body>
 
 <h1>WebChat</h1>
 <div class="login-form">
-    <div class="close"></div>
-    <div class="head-info">
-        <a href="./register">register</a>
+  <div class="close"></div>
+  <div class="head-info">
+    <a href="./login">login</a>
+  </div>
+  <div class="clear"></div>
+  <div class="avtar"><img src="<%=path%>/static/source/img/avtar.png"/></div>
+  <form id="login-form" action="<%=path%>/user/register" method="post" onsubmit="return checkLoginForm()">
+    <div class="key">
+      <input type="text" id="username" name="userid" placeholder="请输入账号">
     </div>
-    <div class="clear"></div>
-    <div class="avtar"><img src="<%=path%>/static/source/img/avtar.png"/></div>
-    <form id="login-form" action="<%=path%>/user/login" method="post" onsubmit="return checkLoginForm()">
-        <div class="key">
-            <input type="text" id="username" name="userid" placeholder="请输入账号">
-        </div>
 
-        <div class="key">
-            <input type="password" id="password" name="password" placeholder="请输入密码">
-        </div>
-        <div class="signin">
-            <input type="submit" id="submit" value="Login">
-        </div>
-    </form>
+    <div class="key">
+      <input type="password" id="password" name="password" placeholder="请输入密码">
+    </div>
+    <div class="signin">
+      <input type="submit" id="submit" value="Register">
+    </div>
+  </form>
 </div>
 
 <script>

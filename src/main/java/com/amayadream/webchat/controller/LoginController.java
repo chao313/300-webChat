@@ -36,6 +36,11 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register() {
+        return "register";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(String userid, String password, HttpSession session, RedirectAttributes attributes,
                         WordDefined defined, CommonDate date, LogUtil logUtil, NetUtil netUtil, HttpServletRequest request) {
@@ -60,6 +65,30 @@ public class LoginController {
                     attributes.addFlashAttribute("message", defined.LOGIN_SUCCESS);
                     return "redirect:/chat";
                 }
+            }
+        }
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(String userid, String password, HttpSession session, RedirectAttributes attributes,
+                           WordDefined defined, CommonDate date, LogUtil logUtil, NetUtil netUtil, HttpServletRequest request) {
+        User user = userService.selectUserByUserid(userid);
+        if (user != null) {
+            //用户名密码已经存在
+            attributes.addFlashAttribute("error", defined.REGISTER_USERID_ERROR);
+            return "redirect:/user/register";
+        } else {
+            User registerUser = new User();
+            registerUser.setUserid(userid);
+            registerUser.setPassword(password);
+            registerUser.setStatus(1);
+            boolean insert = userService.insert(registerUser);
+            if (insert == true) {
+                attributes.addFlashAttribute("message", defined.REGISTER_SUCCES);
+                return "redirect:/user/login";
+            } else {
+                attributes.addFlashAttribute("error", defined.REGISTER_FAIL);
+                return "redirect:/user/register";
             }
         }
     }

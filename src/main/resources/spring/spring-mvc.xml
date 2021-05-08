@@ -32,6 +32,7 @@
                 <property name="IGNORE_URI">
                     <list>
                         <value>/user/login</value>
+                        <value>/user/register</value>
                         <value>/user/logout</value>
                     </list>
                 </property>
